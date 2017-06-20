@@ -7,11 +7,22 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "Raven.h"
+#import "RavenAdapter.h"
 
 int main(int argc, const char * argv[]) {
     @autoreleasepool {
-        // insert code here...
-        NSLog(@"Hello, World!");
+        
+        Raven *raven1 = [Raven new];
+        if ([raven1 respondsToSelector:@selector(sing)]) {
+            NSLog(@"won't happen");
+        }
+        
+        RavenAdapter *adopted = [[RavenAdapter alloc] initWithRaven:raven1];
+        if ([adopted respondsToSelector:@selector(sing)]) {
+            [adopted sing];
+        }
+
     }
     return 0;
 }
